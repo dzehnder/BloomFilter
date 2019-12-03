@@ -1,13 +1,21 @@
 package ch.fhnw.dist;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Start {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
 
         File words = new File("words.txt");
+
+        Scanner FileReader = new Scanner(words);
+
+        for(int i = 0; i < 10; i++)
+        {
+            System.out.println(FileReader.next());
+        }
 
         Scanner scanner = new Scanner(System.in);
 
