@@ -2,8 +2,8 @@ package ch.fhnw.dist;
 
 public class BloomFilter {
 
-    int n;
-    double p, m, k;
+    int n, m;
+    double p, k;
 
     /**
      *
@@ -15,11 +15,19 @@ public class BloomFilter {
         this.n = n;
         this.p = p;
 
-        m = -((n * Math.log(p)) / Math.pow(Math.log(2), 2));
+        m = (int) -((n * Math.log(p)) / Math.pow(Math.log(2), 2)) + 1;
         k = -(Math.log(p) / Math.log(2));
 
         System.out.println("m: " + m);
         System.out.println("k: " + k);
+
+        int[] bitsArray = new int[m];
+
+        for (int i = 0; i < bitsArray.length; i++) {
+            bitsArray[i] = 0;
+        }
+
+
     }
 
 
