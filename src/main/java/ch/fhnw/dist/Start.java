@@ -8,12 +8,12 @@ public class Start {
 
     public static void main(String[] args) throws FileNotFoundException {
 
+        //- Init FileReader
         File words = new File("words.txt");
-
         Scanner FileReader = new Scanner(words);
 
-        //- Test erste 10 Wörter
-        for(int i = 0; i < 10; i++)
+        int numberOfWords = 10;
+        for(int i = 0; i < numberOfWords; i++)
         {
             System.out.println(FileReader.next());
         }
