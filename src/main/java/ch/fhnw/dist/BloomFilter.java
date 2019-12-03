@@ -3,7 +3,7 @@ package ch.fhnw.dist;
 public class BloomFilter {
 
     int n;
-    double p;
+    double p, m, k;
 
     /**
      *
@@ -15,7 +15,11 @@ public class BloomFilter {
         this.n = n;
         this.p = p;
 
-        System.out.println(n + p);
+        m = -((n * Math.log(p)) / Math.pow(Math.log(2), 255));
+        k = -(Math.log(p) / Math.log(2));
+
+        System.out.println("m: " + m);
+        System.out.println("k: " + k);
     }
 
 
