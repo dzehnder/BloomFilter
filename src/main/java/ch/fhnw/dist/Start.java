@@ -12,6 +12,7 @@ public class Start {
 
         Scanner FileReader = new Scanner(words);
 
+        //- Test erste 10 Wörter
         for(int i = 0; i < 10; i++)
         {
             System.out.println(FileReader.next());
