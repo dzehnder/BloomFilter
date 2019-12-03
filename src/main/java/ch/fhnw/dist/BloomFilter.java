@@ -15,7 +15,7 @@ public class BloomFilter {
         this.n = n;
         this.p = p;
 
-        m = -((n * Math.log(p)) / Math.pow(Math.log(2), 255));
+        m = -((n * Math.log(p)) / Math.pow(Math.log(2), 2));
         k = -(Math.log(p) / Math.log(2));
 
         System.out.println("m: " + m);
