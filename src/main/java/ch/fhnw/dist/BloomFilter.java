@@ -42,26 +42,44 @@ public class BloomFilter {
             bitsArray[i] = 0;
         }
 
-        // generate hashes and add them to the list
+        // generate unique hashes and add them to the list
         for (int i = 0; i < k; i++) {
-            hashes.add(Hashing.murmur3_128());
+            hashes.add(Hashing.murmur3_128(i));
         }
 
     }
 
-
+    /**
+     * Add an element to the hash functions.
+     *
+     * @param word the word to be added.
+     */
     public void add(String word) {
         for (HashFunction hashFunction : hashes) {
             HashCode hashCode = hashFunction.newHasher()
                     .putString(word, Charsets.UTF_8)
                     .hash();
+            // set  position in bits array to 1 for this word
+            bitsArray[Math.abs(hashCode.asInt() % m)] = 1;
         }
     }
 
+    /**
+     * Query an element in the hash functions.
+     *
+     * @param word the word to be queried.
+     * @return true if the word was found, false otherwise.
+     */
     public boolean hasWord(String word) {
-
+        for(HashFunction hashFunction : hashes) {
+            HashCode hashCode = hashFunction.newHasher()
+                    .putString(word, Charsets.UTF_8)
+                    .hash();
+            if (bitsArray[Math.abs(hashCode.asInt() % m)] == 1) {
+                return true;
+            }
+        }
         return false;
-
     }
 
 
