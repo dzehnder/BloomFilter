@@ -59,6 +59,7 @@ public class BloomFilter {
             HashCode hashCode = hashFunction.newHasher()
                     .putString(word, Charsets.UTF_8)
                     .hash();
+
             // set  position in bits array to 1 for this word
             bitsArray[Math.abs(hashCode.asInt() % m)] = 1;
         }
@@ -75,6 +76,8 @@ public class BloomFilter {
             HashCode hashCode = hashFunction.newHasher()
                     .putString(word, Charsets.UTF_8)
                     .hash();
+
+            // if position for the word is already set, the word should exist
             if (bitsArray[Math.abs(hashCode.asInt() % m)] == 1) {
                 return true;
             }
