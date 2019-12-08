@@ -1,10 +1,12 @@
 \documentclass[11pt, a4paper]{article}
 \usepackage[left=12mm, right=12mm, top=20mm, bottom=20mm]{geometry}
-		
+
+
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 
 \pagestyle{fancy}
+
 
 % Header
 \lhead{\includegraphics[width=5cm]{fhnwlogo.pdf}}
@@ -14,13 +16,11 @@
 %Footer
 \lfoot{Autoren: Damian Zehnder, Mario Wettstein}
 \cfoot{}
-\rfoot{\thepage}
+\rfoot{\thepage} 
 \renewcommand{\footrulewidth}{0.1pt}
 
 % Alphabetic Sections%
 \renewcommand*{\thesection}{\Alph{section}}
-
-%Diagramm draw
 
 
 \begin{document}
@@ -78,9 +78,20 @@ Wenn nun alle Protokolleintr{\H a}ge durchsucht werden, kann der Bloom Filter {\
 
 \section{Testen der Fehlerwahrscheinlichkeit}
 
-
-\includegraphics[width=10cm]{image/Result.png}
-
+\includegraphics[width=10cm]{image/Result.png}\\
+Die Fehlerwahrscheinlichkeit wird in unserem Programm folgendermassen berechnet:
+Zuerst kann der Benutzer eine bestimmte anzahl W{\H o}rter angeben, die in seinem Datensatz vorhanden sind und eine gew{\H u}nschte Fehlertoleranz in Prozent.\\
+Der Bloom Filter berechnet aus diesen beiden Werten die geeignete Bit Array Gr{\H o}sse und die Anzahl Hash Funktionen.\\
+\\
+Das Programm f{\H u}gt jedes zweite Wort in die Bloom Filter Liste. Beim hinzuf{\H u}gen wird ein Hash Wert generiert, mithilfe der Google Guava Library.\\
+Aus diesem Hash Wert wird ausgelesen, an welcher Position im Bit Array eine 1 gesetzt werden soll.\\
+\\
+Nachdem jedes zweite Wort hinzugef{\H u}gt wurde, wird die andere H{\H a}lfte der W{\H o}rter im Datensatz verglichen.\\
+Dazu wird wieder aus jedem Wort ein Hash Wert generiert und es wird {\H u}berpr{\H u}ft, ob an der Stelle im Bit Array das Bit noch auf 0 gesetzt ist, was bedeutet dass das Wort nicht vorhanden ist.\\
+\\
+Aus der Anzahl hinzugef{\H u}gter W{\H o}rter und der Anzahl gefundenen W{\H o}rtern kann nun die eigentliche Prozentzahl berechnet werden.\\
+Diese liegt bei einem Datensatz von 58000 W{\H o}rtern bei einer Genauigkeit von {\H u}ber 99 \%.
+\\
 
 
 \end{document}
