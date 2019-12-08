@@ -1,0 +1,7 @@
+Praxisbeispiel:
+
+Ethereum benutzt einen Bloom Filter, um Logs schnell und effizient in der Ethereum Blockchain finden zu können.
+
+Im Ethereum-System müssen Events, einschließlich historischer Events, leicht und ohne unnötigen Aufwand gefiltert und gesucht werden können. Gleichzeitig ist der Speicherplatz teuer, dass nicht viele Daten gespeichert werden sollen, wie z. B. die Liste der Transaktionen und die von ihnen erstellten Protokolle.
+Wenn ein Block generiert oder veifiziert wird, wird die Adresse eines Protokollierungsvertrags einem Bloom Filter hinzugefügt, der im Blockheader enthalten ist. Die eigentlichen Protokolle sind aus Platzgründen nicht in den Blockdaten enthalten.
+Wenn nun alle Protokolleinträge durchsucht werden, kann der Bloom Filter überprüfen, ob relevante Protokolle vorhanden sind.
