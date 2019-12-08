@@ -10,10 +10,9 @@ import com.google.common.hash.Hashing;
 
 public class BloomFilter {
 
-    int n, m;
-    double p, k;
-    int[] bitsArray;
-    List<HashFunction> hashes = new ArrayList<>();
+    private int m;
+    private int[] bitsArray;
+    private List<HashFunction> hashes = new ArrayList<>();
 
     /**
      *
@@ -22,14 +21,12 @@ public class BloomFilter {
      * @param p The desired false positive
      */
     public BloomFilter(int n, double p) {
-        this.n = n;
-        this.p = p;
 
         // calculate the number of bits in the array, round up with 1 at the end
-        m = (int) -((n * Math.log(p)) / Math.pow(Math.log(2), 2)) + 1;
+        m = (int) -((n * Math.log(p)) / Math.pow(Math.log(2), 2));
 
         // calculate the number of hash functions, round up with 1 at the end
-        k = (int) -(Math.log(p) / Math.log(2)) + 1;
+        double k = (int) -(Math.log(p) / Math.log(2)) ;
 
         System.out.println("m: " + m);
         System.out.println("k: " + k);
@@ -78,11 +75,11 @@ public class BloomFilter {
                     .hash();
 
             // if position for the word is already set, the word should exist
-            if (bitsArray[Math.abs(hashCode.asInt() % m)] == 1) {
-                return true;
+            if (bitsArray[Math.abs(hashCode.asInt() % m)] == 0) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
 

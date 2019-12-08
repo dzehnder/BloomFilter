@@ -29,35 +29,46 @@ public class Start {
         File words = new File("words.txt");
         Scanner FileReader = new Scanner(words);
 
-        BloomFilter bloomFilter = new BloomFilter(n, p);
+        // create the filter and divide n by 2, as only every second element is used
+        BloomFilter bloomFilter = new BloomFilter(n/2, p);
 
+        double addedWords = 0;
         //- Add every second Word from File
         while(FileReader.hasNext() & i != n)
         {
             if(selWordControl)
             {
                 bloomFilter.add(FileReader.next());
+                addedWords++;
             }
 
-            selWordControl = (selWordControl==false) ? true : false;
+            selWordControl = !selWordControl;
             i++;
         }
 
+        double containedWords = 0;
        //- Check every second Word from File
         while(FileReader.hasNext() & j != n)
         {
             if(chckWordControl)
             {
-                bloomFilter.hasWord(FileReader.next());
+                if (bloomFilter.hasWord(FileReader.next())) {
+                    containedWords++;
+                }
+
             }
 
-            chckWordControl = (chckWordControl==false) ? true : false;
+            chckWordControl = !chckWordControl;
             j++;
         }
 
 
         //- Close Open Scanner
         FileReader.close();
+
+        System.out.println("Added words: " + addedWords);
+        System.out.println("False positives: " + containedWords);
+        System.out.println("True percentage: " + (containedWords/addedWords));
 
     }
 }
