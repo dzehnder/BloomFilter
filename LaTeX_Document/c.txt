@@ -1,0 +1,14 @@
+Fehlerwahrscheinlichkeit:
+
+Die Fehlerwahrscheinlichkeit wird in unserem Programm folgendermassen berechnet:
+Zuerst kann der Benutzer eine bestimmte anzahl Wörter angeben, die in seinem Datensatz vorhanden sind und eine gewünschte Fehlertoleranz in Prozent.
+Der Bloom Filter berechnet aus diesen beiden Werten die geeignete Bit Array Grösse und die Anzahl Hash Funktionen.
+
+Das Programm fügt jedes zweite Wort in die Bloom Filter Liste. Beim hinzufügen wird ein Hash Wert generiert, mithilfe der Google Guava Library.
+Aus diesem Hash Wert wird ausgelesen, an welcher Position im Bit Array eine 1 gesetzt werden soll.
+
+Nachdem jedes zweite Wort hinzugefügt wurde, wird die andere Hälfte der Wörter im Datensatz verglichen.
+Dazu wird wieder aus jedem Wort ein Hash Wert generiert und es wird überprüft, ob an der Stelle im Bit Array das Bit noch auf 0 gesetzt ist, was bedeutet dass das Wort nicht vorhanden ist.
+
+Aus der Anzahl hinzugefügter Wörter und der Anzahl gefundenen Wörtern kann nun die eigentliche Prozentzahl berechnet werden.
+Diese liegt bei einem Datensatz von 58000 Wörtern bei einer Genauigkeit von über 99 %.
