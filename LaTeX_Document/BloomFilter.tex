@@ -81,6 +81,7 @@ Wenn nun alle Protokolleintr{\H a}ge durchsucht werden, kann der Bloom Filter {\
 \includegraphics[width=10cm]{image/Result.png}\\
 Die Fehlerwahrscheinlichkeit wird in unserem Programm folgendermassen berechnet:
 Zuerst kann der Benutzer eine bestimmte anzahl W{\H o}rter angeben, die in seinem Datensatz vorhanden sind und eine gew{\H u}nschte Fehlertoleranz in Prozent.\\
+\\
 Der Bloom Filter berechnet aus diesen beiden Werten die geeignete Bit Array Gr{\H o}sse und die Anzahl Hash Funktionen.\\
 \\
 Das Programm f{\H u}gt jedes zweite Wort in die Bloom Filter Liste. Beim hinzuf{\H u}gen wird ein Hash Wert generiert, mithilfe der Google Guava Library.\\
@@ -90,8 +91,9 @@ Nachdem jedes zweite Wort hinzugef{\H u}gt wurde, wird die andere H{\H a}lfte de
 Dazu wird wieder aus jedem Wort ein Hash Wert generiert und es wird {\H u}berpr{\H u}ft, ob an der Stelle im Bit Array das Bit noch auf 0 gesetzt ist, was bedeutet dass das Wort nicht vorhanden ist.\\
 \\
 Aus der Anzahl hinzugef{\H u}gter W{\H o}rter und der Anzahl gefundenen W{\H o}rtern kann nun die eigentliche Prozentzahl berechnet werden.\\
-Diese liegt bei einem Datensatz von 58000 W{\H o}rtern bei einer Genauigkeit von {\H u}ber 99 \%.
 \\
+Diese liegt bei einem Datensatz von 58000 W{\H o}rtern bei einer Genauigkeit von {\H u}ber 99 \%.
+
 
 
 \end{document}
